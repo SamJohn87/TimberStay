@@ -21,7 +21,7 @@ const RenderCampsite = ({ campsite }) => {
         );
     }
 
-    return <View/>;
+    return <View />;
 };
 
 export default RenderCampsite;
