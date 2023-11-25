@@ -9,6 +9,7 @@ import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 const screenOptions = {
     headerStyle: { backgroundColor: '#5637DD' },
@@ -16,7 +17,6 @@ const screenOptions = {
 };
 
 const HomeNavigator = () => {
-    const Stack = createStackNavigator();
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
@@ -30,7 +30,6 @@ const HomeNavigator = () => {
 };
 
 const AboutNavigator = () => {
-    const Stack = createStackNavigator();
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
@@ -43,7 +42,6 @@ const AboutNavigator = () => {
 };
 
 const ContactNavigator = () => {
-    const Stack = createStackNavigator();
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
@@ -57,7 +55,6 @@ const ContactNavigator = () => {
 };
 
 const DirectoryNavigator = () => {
-    const Stack = createStackNavigator();
 
     return (
         <Stack.Navigator
