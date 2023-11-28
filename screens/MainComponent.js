@@ -127,7 +127,6 @@ const CustomDrawerContent = (props) => (
             </View>
             <View style={{ flex: 2 }}>
                 <Text style={styles.drawerHeaderText}>Nucamp</Text>
-                
             </View>
         </View>
         <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
