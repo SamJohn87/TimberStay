@@ -4,7 +4,7 @@ import { baseUrl } from '../../shared/baseUrl';
 export const fetchPartners = createAsyncThunk(
     'partners/fetchPartners',
     async () => {
-        const response = await fetch(baseUrl + 'partners');
+        const response = await fetch(`${baseUrl}partners`);
         if (!response.ok) {
             return Promise.reject(
                 'Unable to fetch, status: ' + response.status
