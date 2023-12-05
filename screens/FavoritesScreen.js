@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 import { SwipeRow } from "react-native-swipe-list-view";
+import { Alert } from "react-native";
 import { toggleFavorite } from "../features/favorites/favoritesSlice";
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
@@ -17,7 +18,19 @@ const FavoritesScreen = ({ navigation }) => {
                 <View style={styles.deleteView}>
                     <TouchableOpacity
                         style={styles.deleteTouchable}
-                        onPress={() => dispatch(toggleFavorite(campsite.id))}>
+                        onPress={() => Alert.alert('Delete Favorite?', `Are you sure you wish to delete the favorite campsite ${campsite.name}?`,
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(`${campsite.name} Not Deleted`)
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => dispatch(toggleFavorite(campsite.id))
+                                }
+                            ],
+                            {cancelable: false}
+                        )}>
                         <Text style={styles.deleteText}>Delete</Text>
                     </TouchableOpacity>
                 </View>
@@ -69,7 +82,7 @@ const styles = StyleSheet.create({
     deleteText: {
         color: 'white',
         fontWeight: '700',
-        textAlign:'center',
+        textAlign: 'center',
         fontSize: 16,
         width: 100
     },
