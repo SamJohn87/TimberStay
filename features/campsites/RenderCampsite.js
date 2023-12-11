@@ -5,8 +5,10 @@ import { baseUrl } from "../../shared/baseUrl";
 import * as Animatable from 'react-native-animatable';
 
 const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => {
-    const isLeftSwipe = ({ dx }) => dx < -200;
     const view = useRef();
+
+    const isLeftSwipe = ({ dx }) => dx < -200;
+    const isRightSwipe = ({ dx }) => dx > 200;
 
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -34,6 +36,8 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
                     ],
                     { cancelable: false }
                 )
+            } else if (isRightSwipe(gestureState)) {
+                onShowModal();
             }
         }
     });
@@ -45,7 +49,7 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
                 duration={2000}
                 delay={1000}
                 ref={view}
-                { ...panResponder.panHandlers}
+                {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
                     <Card.Image source={{ uri: `${baseUrl}${campsite.image}` }}>
