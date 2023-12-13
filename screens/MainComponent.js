@@ -17,6 +17,7 @@ import ContactScreen from './ContactScreen';
 import ReservationScreen from './ReservationScreen';
 import logo from '../assets/images/logo.png'
 import FavoritesScreen from './FavoritesScreen';
+import LoginScreen from './LoginScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -187,6 +188,28 @@ const FavoritesNavigator = () => {
     );
 };
 
+const LoginNavigator = () => {
+
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen
+                name='Login'
+                component={LoginScreen}
+                options={({ navigation }) => ({
+                    headerLeft: () => (
+                        <Icon
+                            name='sign-in'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        ></Icon>
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -209,6 +232,21 @@ const Main = () => {
                 drawerContent={CustomDrawerContent}
                 drawerStyle={{ backgroundColor: '#CEC8FF' }}
             >
+                <Drawer.Screen
+                    name='Login'
+                    component={LoginNavigator}
+                    options={{
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='sign-in'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            ></Icon>
+                        )
+                    }}
+                />
                 <Drawer.Screen
                     name='Home'
                     component={HomeNavigator}
