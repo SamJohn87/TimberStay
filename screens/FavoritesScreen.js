@@ -1,33 +1,33 @@
-import { useSelector, useDispatch } from "react-redux";
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
-import { SwipeRow } from "react-native-swipe-list-view";
-import { Alert } from "react-native";
-import { toggleFavorite } from "../features/favorites/favoritesSlice";
+import { useSelector, useDispatch } from 'react-redux';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Avatar, ListItem } from 'react-native-elements';
+import { SwipeRow } from 'react-native-swipe-list-view';
+import { Alert } from 'react-native';
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
 const FavoritesScreen = ({ navigation }) => {
-    const { campsitesArray, isLoading, errMess } = useSelector((state) => state.campsites);
+    const { cabinsArray, isLoading, errMess } = useSelector((state) => state.cabins);
     const favorites = useSelector((state) => state.favorites);
     const dispatch = useDispatch();
 
-    const renderFavoriteItem = ({ item: campsite }) => {
+    const renderFavoriteItem = ({ item: cabin }) => {
         return (
             <SwipeRow rightOpenValue={-100}>
                 <View style={styles.deleteView}>
                     <TouchableOpacity
                         style={styles.deleteTouchable}
-                        onPress={() => Alert.alert('Delete Favorite?', `Are you sure you wish to delete the favorite campsite ${campsite.name}?`,
+                        onPress={() => Alert.alert('Delete Favorite?', `Are you sure you wish to delete the favorite cabin ${cabin.name}?`,
                             [
                                 {
                                     text: 'Cancel',
-                                    onPress: () => console.log(`${campsite.name} Not Deleted`)
+                                    onPress: () => console.log(`${cabin.name} Not Deleted`)
                                 },
                                 {
                                     text: 'OK',
-                                    onPress: () => dispatch(toggleFavorite(campsite.id))
+                                    onPress: () => dispatch(toggleFavorite(cabin.id))
                                 }
                             ],
                             { cancelable: false }
@@ -38,14 +38,14 @@ const FavoritesScreen = ({ navigation }) => {
                 <View>
                     <ListItem
                         onPress={() => navigation.navigate('Directory', {
-                            screen: 'CampsiteInfo',
-                            params: { campsite }
+                            screen: 'CabinInfo',
+                            params: { cabin }
                         })}
                     >
-                        <Avatar rounded source={{ uri: `${baseUrl}${campsite.image}` }} />
+                        <Avatar rounded source={{ uri: `${baseUrl}${cabin.image}` }} />
                         <ListItem.Content>
-                            <ListItem.Title>{campsite.name}</ListItem.Title>
-                            <ListItem.Subtitle>{campsite.description}</ListItem.Subtitle>
+                            <ListItem.Title>{cabin.name}</ListItem.Title>
+                            <ListItem.Subtitle>{cabin.description}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
                 </View>
@@ -71,7 +71,7 @@ const FavoritesScreen = ({ navigation }) => {
             duration={2000}
         >
             <FlatList
-                data={campsitesArray.filter((campsite) => favorites.includes(campsite.id))}
+                data={cabinsArray.filter((cabin) => favorites.includes(cabin.id))}
                 renderItem={renderFavoriteItem}
                 keyExtractor={(item) => item.id.toString()}
             />

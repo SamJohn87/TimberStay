@@ -18,7 +18,6 @@ import ContactScreen from './ContactScreen';
 import ReservationScreen from './ReservationScreen';
 import logo from '../assets/app_logo.png';
 import FavoritesScreen from './FavoritesScreen';
-import LoginScreen from './LoginScreen';
 import NetInfo from '@react-native-community/netinfo';
 
 const Drawer = createDrawerNavigator();
@@ -187,35 +186,6 @@ const FavoritesNavigator = () => {
     );
 };
 
-const LoginNavigator = () => {
-
-    return (
-        <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen
-                name='Login'
-                component={LoginScreen}
-                options={({ navigation, route }) => ({
-                    headerTitle: getFocusedRouteNameFromRoute(route),
-                    headerLeft: () => (
-                        <Icon
-                            name={
-                                getFocusedRouteNameFromRoute(route) ===
-                                    'Register'
-                                    ? 'user-plus'
-                                    : 'sign-in'
-                            }
-                            type='font-awesome'
-                            iconStyle={styles.stackIcon}
-                            onPress={() => navigation.toggleDrawer()}
-                        ></Icon>
-                    )
-                })}
-            />
-        </Stack.Navigator>
-    );
-};
-
-
 const Main = () => {
     const dispatch = useDispatch();
 
@@ -266,21 +236,6 @@ const Main = () => {
                 initialRouteName='Home'
                 drawerContent={CustomDrawerContent}
             >
-                <Drawer.Screen
-                    name='Login'
-                    component={LoginNavigator}
-                    options={{
-                        drawerIcon: ({ color }) => (
-                            <Icon
-                                name='sign-in'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            ></Icon>
-                        )
-                    }}
-                />
                 <Drawer.Screen
                     name='Home'
                     component={HomeNavigator}

@@ -62,10 +62,14 @@ const HomeScreen = () => {
     }, [])
 
     return (
+        <>
         <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
             <FeaturedItem item={featCabins} isLoading={cabins.isLoading} errMess={cabins.errMess} />
             <FeaturedItem item={featPromotion} isLoading={promotions.isLoading} errMess={promotions.errMess} />
         </Animated.ScrollView>
+        <Text style={{fontSize: 7}}>logos by hotpot.ai/art-generator</Text>
+        <Text style={{fontSize: 7}}>images by Unsplash</Text>
+        </>
     );
 };
 

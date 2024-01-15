@@ -29,7 +29,7 @@ const ContactScreen = () => {
                     <Text style={{ color: '#3581C4' }}>Email: campsite@nucamp.co</Text>
                     <Button
                         title='Send Email'
-                        buttonStyle={{ backgroundColor: '#703F13', margin: 40 }}
+                        buttonStyle={{ backgroundColor: '#D17B30', margin: 40 }}
                         icon={
                             <Icon
                                 name='envelope-o'
