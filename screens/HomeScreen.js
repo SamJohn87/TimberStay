@@ -34,7 +34,7 @@ const FeaturedItem = (props) => {
                         </Text>
                     </View>
                 </Card.Image>
-                <Text style={{ margin: 20 }}>
+                <Text style={{ margin: 20, color: '#5381C4' }}>
                     {item.description}
                 </Text>
             </Card>
