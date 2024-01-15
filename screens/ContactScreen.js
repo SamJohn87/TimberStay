@@ -26,7 +26,7 @@ const ContactScreen = () => {
                     <Text style={{ color: '#3581C4' }}>Seattle, WA 98001</Text>
                     <Text style={{ marginBottom: 10, color: '#3581C4' }}>U.S.A.</Text>
                     <Text style={{ color: '#3581C4' }}>Phone: 1-206-555-1234</Text>
-                    <Text style={{ color: '#3581C4' }}>Email: campsite@nucamp.co</Text>
+                    <Text style={{ color: '#3581C4' }}>Email: info@timberstay.com</Text>
                     <Button
                         title='Send Email'
                         buttonStyle={{ backgroundColor: '#D17B30', margin: 40 }}
