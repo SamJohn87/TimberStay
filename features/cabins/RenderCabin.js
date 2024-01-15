@@ -75,7 +75,7 @@ const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
                     <Text style={{ margin: 20, color: '#3581C4' }}>{cabin.description}</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ marginTop: 10, marginLeft: 20, color: 'green', fontWeight: 'bold' }}>${cabin.price}</Text>
-                        <Text style={{ marginTop: 15, color: '#3581C4', fontSize: 10 }}>/nigth</Text>
+                        <Text style={{ marginTop: 15, color: '#3581C4', fontSize: 10 }}>/night</Text>
                     </View>
 
                     <View style={styles.cardRow}>
