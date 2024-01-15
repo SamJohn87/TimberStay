@@ -5,18 +5,17 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchPartners } from '../features/partners/partnersSlice';
-import { fetchCampsites } from '../features/campsites/campsitesSlice';
+import { fetchCabins } from '../features/cabins/cabinsSlice';
 import { fetchPromotions } from '../features/promotions/promotionsSlice';
 import { fetchComments } from '../features/comments/commentsSlice';
 import Constants from 'expo-constants';
-import CampsiteInfoScreen from './CampsiteInfoScreen';
+import CabinInfoScreen from './CabinInfoScreen';
 import DirectoryScreen from './DirectoryScreen';
 import HomeScreen from './HomeScreen';
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
 import ReservationScreen from './ReservationScreen';
-import logo from '../assets/images/logo.png'
+import logo from '../assets/app_logo.png';
 import FavoritesScreen from './FavoritesScreen';
 import LoginScreen from './LoginScreen';
 import NetInfo from '@react-native-community/netinfo';
@@ -25,7 +24,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const screenOptions = {
-    headerStyle: { backgroundColor: '#5637DD' },
+    headerStyle: { backgroundColor: '#703F13' },
     headerTintColor: 'white'
 };
 
@@ -107,7 +106,7 @@ const DirectoryNavigator = () => {
                 name='Directory'
                 component={DirectoryScreen}
                 options={({ navigation }) => ({
-                    title: 'Campsite Directory',
+                    title: 'Cabin Directory',
                     headerLeft: () => (
                         <Icon
                             name='list'
@@ -120,10 +119,10 @@ const DirectoryNavigator = () => {
 
             />
             <Stack.Screen
-                name='CampsiteInfo'
-                component={CampsiteInfoScreen}
+                name='CabinInfo'
+                component={CabinInfoScreen}
                 options={({ route }) => ({
-                    title: route.params.campsite.name
+                    title: route.params.cabin.name
                 })}
             />
         </Stack.Navigator>
@@ -136,11 +135,8 @@ const CustomDrawerContent = (props) => (
             <View style={{ flex: 1 }}>
                 <Image source={logo} style={styles.drawerImage} />
             </View>
-            <View style={{ flex: 2 }}>
-                <Text style={styles.drawerHeaderText}>Nucamp</Text>
-            </View>
         </View>
-        <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+        <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} activeTintColor='#3581C4' inactiveTintColor='#D17B30' />
     </DrawerContentScrollView>
 );
 
@@ -175,7 +171,7 @@ const FavoritesNavigator = () => {
                 name='Favorites'
                 component={FavoritesScreen}
                 options={({ navigation }) => ({
-                    title: 'Favorite Campsites',
+                    title: 'Favorite Cabins',
                     headerLeft: () => (
                         <Icon
                             name='heart'
@@ -202,9 +198,9 @@ const LoginNavigator = () => {
                     headerLeft: () => (
                         <Icon
                             name={
-                                getFocusedRouteNameFromRoute(route) === 
-                                'Register' 
-                                    ? 'user-plus' 
+                                getFocusedRouteNameFromRoute(route) ===
+                                    'Register'
+                                    ? 'user-plus'
                                     : 'sign-in'
                             }
                             type='font-awesome'
@@ -223,9 +219,8 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchCampsites());
+        dispatch(fetchCabins());
         dispatch(fetchPromotions());
-        dispatch(fetchPartners());
         dispatch(fetchComments());
     }, [dispatch]);
 
@@ -247,14 +242,14 @@ const Main = () => {
         let connectionMsg = 'You are connected to an active network';
 
         switch (connectionInfo.type) {
-            case 'none': connectionMsg ='No network connection is active.';
-            break;
+            case 'none': connectionMsg = 'No network connection is active.';
+                break;
             case 'unknown': connectionMsg = 'The network connection state is npw unknown.';
-            break;
+                break;
             case 'cellular': connectionMsg = 'You are now connected to a cellular network';
-            break;
-            case 'wifi': connectionMsg ='You are now connected to a WiFi Network';
-            break;
+                break;
+            case 'wifi': connectionMsg = 'You are now connected to a WiFi Network';
+                break;
         }
 
         Platform.OS === 'ios' ? Alert.alert('Connection change: ', connectionMsg) : ToastAndroid.show(connectionMsg, ToastAndroid.LONG);
@@ -268,7 +263,6 @@ const Main = () => {
             <Drawer.Navigator
                 initialRouteName='Home'
                 drawerContent={CustomDrawerContent}
-                drawerStyle={{ backgroundColor: '#CEC8FF' }}
             >
                 <Drawer.Screen
                     name='Login'
@@ -304,7 +298,7 @@ const Main = () => {
                     name='Directory'
                     component={DirectoryNavigator}
                     options={{
-                        title: 'Campsite Directory',
+                        title: 'Cabin Directory',
                         drawerIcon: ({ color }) => (
                             <Icon
                                 name='list'
@@ -317,10 +311,10 @@ const Main = () => {
                     }}
                 />
                 <Drawer.Screen
-                    name='ReserveCampsite'
+                    name='ReserveCabin'
                     component={ReservationNavigator}
                     options={{
-                        title: 'Reserve Campsite',
+                        title: 'Reserve Cabin',
                         drawerIcon: ({ color }) => (
                             <Icon
                                 name='tree'
@@ -392,22 +386,15 @@ const styles = StyleSheet.create({
 
     },
     drawerHeader: {
-        backgroundColor: '#5637DD',
         height: 140,
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'row'
-    },
-    drawerHeaderText: {
-        color: '#fff',
-        fontSize: 24,
-        fontWeight: 'bold'
+        flex: 1
     },
     drawerImage: {
-        margin: 10,
-        height: 60,
-        width: 60
+        marginTop: 20,
+        height: 100,
+        width: 100
     }
 });
 

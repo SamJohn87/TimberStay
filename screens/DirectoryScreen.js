@@ -6,30 +6,30 @@ import Loading from '../components/LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
 const DirectoryScreen = ({ navigation }) => {
-    const campsites = useSelector((state) => state.campsites);
+    const cabins = useSelector((state) => state.cabins);
 
-    if (campsites.isLoading) {
+    if (cabins.isLoading) {
         return <Loading />
     }
 
-    if (campsites.errMess) {
+    if (cabins.errMess) {
         <View>
-            <Text>{campsites.errMess}</Text>
+            <Text>{cabins.errMess}</Text>
         </View>
     }
 
-    const renderDirectoryItem = ({ item: campsite }) => {
+    const renderDirectoryItem = ({ item: cabin }) => {
         return (
             <Animatable.View
                 animation='fadeInRightBig'
                 duration={2000}
             >
                 <Tile
-                    title={campsite.name}
-                    caption={campsite.description}
+                    title={cabin.name}
+                    caption={cabin.description}
                     featured
-                    onPress={() => navigation.navigate('CampsiteInfo', { campsite })}
-                    imageSrc={{ uri: `${baseUrl}${campsite.image}` }}
+                    onPress={() => navigation.navigate('CabinInfo', { cabin })}
+                    imageSrc={{ uri: `${baseUrl}${cabin.image}` }}
                 />
             </Animatable.View>
         );
@@ -37,7 +37,7 @@ const DirectoryScreen = ({ navigation }) => {
 
     return (
         <FlatList
-            data={campsites.campsitesArray}
+            data={cabins.cabinsArray}
             renderItem={renderDirectoryItem}
             keyExtractor={(item) => item.id.toString()}
         />

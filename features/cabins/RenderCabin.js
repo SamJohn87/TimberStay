@@ -4,7 +4,7 @@ import { Card, Icon } from "react-native-elements";
 import { baseUrl } from "../../shared/baseUrl";
 import * as Animatable from 'react-native-animatable';
 
-const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => {
+const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
     const view = useRef();
 
     const isLeftSwipe = ({ dx }) => dx < -200;
@@ -22,7 +22,7 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
             if (isLeftSwipe(gestureState)) {
                 Alert.alert(
                     'Add Favorite',
-                    `Are you sure you want to add ${campsite.name} to favorites?`,
+                    `Are you sure you want to add ${cabin.name} to favorites?`,
                     [
                         {
                             text: 'Cancel',
@@ -42,7 +42,7 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
         }
     });
 
-    const shareCampsite = (title, message, url) => {
+    const shareCabin = (title, message, url) => {
         Share.share(
             {
                 title,
@@ -55,7 +55,7 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
         )
     }
 
-    if (campsite) {
+    if (cabin) {
         return (
             <Animatable.View
                 animation='fadeInDownBig'
@@ -65,19 +65,24 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
                 {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
-                    <Card.Image source={{ uri: `${baseUrl}${campsite.image}` }}>
+                    <Card.Image source={{ uri: `${baseUrl}${cabin.image}` }}>
                         <View style={{ justifyContent: 'center', flex: 1 }}>
                             <Text style={styles.cardText}>
-                                {campsite.name}
+                                {cabin.name}
                             </Text>
                         </View>
                     </Card.Image>
-                    <Text style={{ margin: 20 }}>{campsite.description}</Text>
+                    <Text style={{ margin: 20, color: '#3581C4' }}>{cabin.description}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ marginTop: 10, marginLeft: 20, color: 'green', fontWeight: 'bold' }}>${cabin.price}</Text>
+                        <Text style={{ marginTop: 15, color: '#3581C4', fontSize: 10 }}>/nigth</Text>
+                    </View>
+
                     <View style={styles.cardRow}>
                         <Icon
                             name={isFavorite ? 'heart' : 'heart-o'}
                             type='font-awesome'
-                            color='#f50'
+                            color='#D17B30'
                             raised
                             reverse
                             onPress={
@@ -89,18 +94,18 @@ const RenderCampsite = ({ campsite, isFavorite, markFavorite, onShowModal }) => 
                         <Icon
                             name='pencil'
                             type='font-awesome'
-                            color='#5637DD'
+                            color='#3581C4'
                             raised
                             reverse
                             onPress={onShowModal}
                         />
-                         <Icon
+                        <Icon
                             name='share'
                             type='font-awesome'
-                            color='#5637DD'
+                            color='#3581C4'
                             raised
                             reverse
-                            onPress={() => shareCampsite(campsite.name, campsite.description, `${baseUrl}${campsite.image}`)}
+                            onPress={() => shareCabin(cabin.name, cabin.description, `${baseUrl}${cabin.image}`)}
                         />
                     </View>
                 </Card>
@@ -134,4 +139,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RenderCampsite;
+export default RenderCabin;

@@ -45,9 +45,8 @@ const FeaturedItem = (props) => {
 };
 
 const HomeScreen = () => {
-    const campsites = useSelector((state) => state.campsites);
+    const cabins = useSelector((state) => state.cabins);
     const promotions = useSelector((state) => state.promotions);
-    const partners = useSelector((state) => state.partners);
     const scaleValue = useRef(new Animated.Value(0)).current;
     const scaleAnimation = Animated.timing(scaleValue, {
         toValue: 1,
@@ -55,9 +54,8 @@ const HomeScreen = () => {
         useNativeDriver: true
     });
 
-    const featCampsite = campsites.campsitesArray.find((item) => item.featured);
+    const featCabins = cabins.cabinsArray.find((item) => item.featured);
     const featPromotion = promotions.promotionsArray.find((item) => item.featured);
-    const featPartner = partners.partnersArray.find((item) => item.featured);
 
     useEffect(() => {
         scaleAnimation.start();
@@ -65,9 +63,8 @@ const HomeScreen = () => {
 
     return (
         <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
-            <FeaturedItem item={featCampsite} isLoading={campsites.isLoading} errMess={campsites.errMess} />
+            <FeaturedItem item={featCabins} isLoading={cabins.isLoading} errMess={cabins.errMess} />
             <FeaturedItem item={featPromotion} isLoading={promotions.isLoading} errMess={promotions.errMess} />
-            <FeaturedItem item={featPartner} isLoading={partners.isLoading} errMess={partners.errMess} />
         </Animated.ScrollView>
     );
 };

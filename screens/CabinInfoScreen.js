@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../features/favorites/favoritesSlice";
 import { Input, Rating } from "react-native-elements";
-import RenderCampsite from "../features/campsites/RenderCampsite";
+import RenderCabin from "../features/cabins/RenderCabin";
 import { postComment } from "../features/comments/commentsSlice";
 import * as Animatable from 'react-native-animatable';
 
-const CampsiteInfoScreen = ({ route }) => {
-    const { campsite } = route.params;
+const CabinInfoScreen = ({ route }) => {
+    const { cabin } = route.params;
     const comments = useSelector((state) => state.comments);
     const [showModal, setShowModal] = useState(false);
     const [rating, setRating] = useState(5);
@@ -23,7 +23,7 @@ const CampsiteInfoScreen = ({ route }) => {
             author,
             rating,
             text,
-            campsiteId: campsite.id
+            cabinId: cabin.id
         };
 
         dispatch(postComment(newComment));
@@ -39,7 +39,7 @@ const CampsiteInfoScreen = ({ route }) => {
     const renderCommentItem = ({ item }) => {
         return (
             <View style={styles.commentItem}>
-                <Text style={{ fontSize: 14 }}>{item.text}</Text>
+                <Text style={{ fontSize: 14, color: '#3581C4' }}>{item.text}</Text>
                 <Rating
                     startingValue={item.rating}
                     imageSize={10}
@@ -59,7 +59,7 @@ const CampsiteInfoScreen = ({ route }) => {
         >
             <FlatList
                 data={comments.commentsArray.filter(
-                    (comment) => comment.campsiteId === campsite.id
+                    (comment) => comment.cabinId === cabin.id
                 )}
                 renderItem={renderCommentItem}
                 keyExtractor={(item) => item.id.toString()}
@@ -69,10 +69,10 @@ const CampsiteInfoScreen = ({ route }) => {
                 }}
                 ListHeaderComponent={
                     <>
-                        <RenderCampsite
-                            campsite={campsite}
-                            isFavorite={favorites.includes(campsite.id)}
-                            markFavorite={() => dispatch(toggleFavorite(campsite.id))}
+                        <RenderCabin
+                            cabin={cabin}
+                            isFavorite={favorites.includes(cabin.id)}
+                            markFavorite={() => dispatch(toggleFavorite(cabin.id))}
                             onShowModal={() => setShowModal(!showModal)}
                         />
                         <Text style={styles.commentsTitle}>Comments</Text>
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CampsiteInfoScreen;
+export default CabinInfoScreen;
