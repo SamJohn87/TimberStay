@@ -9,14 +9,12 @@ const ReservationScreen = () => {
     const [campers, setCampers] = useState(1);
     const [hikeIn, setHikeIn] = useState(false);
     const [date, setDate] = useState(new Date());
+    const [dateTo, setDateTo] = useState(new Date());
     const [showCalendar, setShowCalendar] = useState(false);
+    const [showCalendarTo, setShowCalendarTo] = useState(false);
 
     const handleReservation = () => {
-        console.log('campers:', campers);
-        console.log('hikeIn:', hikeIn);
-        console.log('date:', date);
-
-        Alert.alert('Begin Search?', `Number of Campers: ${campers}\n\nHike-In? ${hikeIn}\n\nDate: ${date.toLocaleDateString()}`,
+        Alert.alert('Begin Search?', `Number of Campers: ${campers}\n\nHike-In? ${hikeIn}\n\nFrom: ${date.toLocaleDateString()}\n\nTo: ${dateTo.toLocaleDateString()}`,
             [
                 {
                     text: 'Cancel',
@@ -39,12 +37,19 @@ const ReservationScreen = () => {
         setHikeIn(false);
         setDate(new Date());
         setShowCalendar(false);
+        setShowCalendarTo(false);
     };
 
     const onDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShowCalendar(Platform.OS === 'ios');
         setDate(currentDate);
+    };
+
+    const onDateChangeTo = (event, selectedDate) => {
+        const currentDate = selectedDate || dateTo;
+        setShowCalendarTo(Platform.OS === 'ios');
+        setDateTo(currentDate);
     };
 
     const presentLocalNotification = async (reservationDate) => {
@@ -125,12 +130,12 @@ const ReservationScreen = () => {
                     />
                 </View>
                 <View style={styles.formRow}>
-                    <Text style={styles.formLabel}>Date:</Text>
+                    <Text style={styles.formLabel}>From:</Text>
                     <Button
                         onPress={() => setShowCalendar(!showCalendar)}
                         title={date.toLocaleDateString('en-US')}
-                        color='#5637DD'
-                        accessibilityLabel='Tap me to seect a reservation date'
+                        color='#D17B30'
+                        accessibilityLabel='Tap me to see a reservation date'
                     />
                 </View>
                 {showCalendar && (
@@ -143,10 +148,28 @@ const ReservationScreen = () => {
                     />
                 )}
                 <View style={styles.formRow}>
+                    <Text style={styles.formLabel}>To:</Text>
+                    <Button
+                        onPress={() => setShowCalendarTo(!showCalendarTo)}
+                        title={dateTo.toLocaleDateString('en-US')}
+                        color='#D17B30'
+                        accessibilityLabel='Tap me to see a reservation date'
+                    />
+                </View>
+                {showCalendarTo && (
+                    <DateTimePicker
+                        style={styles.formItem}
+                        value={dateTo}
+                        mode='date'
+                        display='default'
+                        onChange={onDateChangeTo}
+                    />
+                )}
+                <View style={styles.formRow}>
                     <Button
                         onPress={() => handleReservation()}
                         title='Search Availability'
-                        color='#5637DD'
+                        color='#D17B30'
                         accessibilityLabel='Tap me to search for available campsites to reserve'
                     />
                 </View>
@@ -164,7 +187,8 @@ const styles = StyleSheet.create({
     },
     formLabel: {
         fontSize: 18,
-        flex: 2
+        flex: 2,
+        color: '#3581C4'
     },
     formItem: {
         flex: 1
