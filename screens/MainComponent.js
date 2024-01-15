@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCabins } from '../features/cabins/cabinsSlice';
+import { fetchPartners } from '../features/partners/partnersSlice';
 import { fetchPromotions } from '../features/promotions/promotionsSlice';
 import { fetchComments } from '../features/comments/commentsSlice';
 import Constants from 'expo-constants';
@@ -221,6 +222,7 @@ const Main = () => {
     useEffect(() => {
         dispatch(fetchCabins());
         dispatch(fetchPromotions());
+        dispatch(fetchPartners());
         dispatch(fetchComments());
     }, [dispatch]);
 

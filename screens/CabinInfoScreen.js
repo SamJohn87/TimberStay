@@ -1,10 +1,10 @@
-import { FlatList, StyleSheet, Text, View, Button, Modal } from "react-native";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleFavorite } from "../features/favorites/favoritesSlice";
-import { Input, Rating } from "react-native-elements";
-import RenderCabin from "../features/cabins/RenderCabin";
-import { postComment } from "../features/comments/commentsSlice";
+import { FlatList, StyleSheet, Text, View, Button, Modal } from 'react-native';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
+import { Input, Rating } from 'react-native-elements';
+import RenderCabin from '../features/cabins/RenderCabin';
+import { postComment } from '../features/comments/commentsSlice';
 import * as Animatable from 'react-native-animatable';
 
 const CabinInfoScreen = ({ route }) => {
@@ -37,6 +37,7 @@ const CabinInfoScreen = ({ route }) => {
     };
 
     const renderCommentItem = ({ item }) => {
+        const dateFormatted = (new Date(item.date)).toLocaleDateString();
         return (
             <View style={styles.commentItem}>
                 <Text style={{ fontSize: 14, color: '#3581C4' }}>{item.text}</Text>
@@ -46,7 +47,7 @@ const CabinInfoScreen = ({ route }) => {
                     style={{ alignItems: 'flex-start', paddingVertical: '5%' }}
                     readonly
                 />
-                <Text style={{ fontSize: 12 }}>{`-- ${item.author}, ${item.date}`}</Text>
+                <Text style={{ fontSize: 12 }}>{`-- ${item.author}, ${dateFormatted}`}</Text>
             </View>
         );
     }
@@ -113,7 +114,7 @@ const CabinInfoScreen = ({ route }) => {
                                 handleSubmit();
                                 resetForm();
                             }}
-                            color='#5637DD'
+                            color='#703F13'
                             title='Submit'
                         />
                     </View>
