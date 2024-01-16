@@ -18,7 +18,7 @@ Feel free to explore my [personal website](https://samjohn87.github.io/) to lear
 
 ## Visuals
 
-![Alt text](assets/menuscreen.jpg)
-![Alt text](assets/cabininfoscreen.jpg)
+<img src="assets/menuscreen.jpg" width="300" height="648">
+<img src="assets/cabininfoscreen.jpg" width="300" height="648">
 
 
