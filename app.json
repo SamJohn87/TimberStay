@@ -1,30 +1,17 @@
 {
   "expo": {
-    "name": "nucampsite",
-    "slug": "nucampsite",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    "name": "TimberStay",
+    "icon": "./assets/app_logo.png",
+    "extra": {
+      "eas": {
+        "projectId": "6248878c-5c9d-40e7-9fe7-82eefcb7e1b8"
+      }
     },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.samanthanjohnson.timberstay"
     }
   }
 }

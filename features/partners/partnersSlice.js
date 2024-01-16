@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../../firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
+
+const { db } = require('../../firebase.config');
 
 export const fetchPartners = createAsyncThunk(
     'partners/fetchPartners',
