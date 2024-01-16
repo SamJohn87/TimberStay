@@ -1,8 +1,8 @@
-import { View, Text, Animated } from "react-native";
-import { useEffect, useRef } from "react";
-import { Card } from "react-native-elements";
-import { useSelector } from "react-redux";
-import Loading from "../components/LoadingComponent";
+import { View, Text, Animated } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Card } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import Loading from '../components/LoadingComponent';
 
 const FeaturedItem = (props) => {
     const { item } = props;

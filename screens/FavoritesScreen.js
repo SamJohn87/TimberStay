@@ -4,7 +4,6 @@ import { Avatar, ListItem } from 'react-native-elements';
 import { SwipeRow } from 'react-native-swipe-list-view';
 import { Alert } from 'react-native';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
-import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
@@ -42,10 +41,10 @@ const FavoritesScreen = ({ navigation }) => {
                             params: { cabin }
                         })}
                     >
-                        <Avatar rounded source={{ uri: `${baseUrl}${cabin.image}` }} />
+                        <Avatar rounded source={cabin.image} />
                         <ListItem.Content>
                             <ListItem.Title>{cabin.name}</ListItem.Title>
-                            <ListItem.Subtitle style={{ color: '#3581C4'}}>{cabin.description}</ListItem.Subtitle>
+                            <ListItem.Subtitle style={{ color: '#3581C4' }}>{cabin.description}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
                 </View>

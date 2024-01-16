@@ -13,6 +13,8 @@ export const fetchCabins = createAsyncThunk(
             cabins.push(doc.data()); //import results in array
         });
 
+        cabins.sort((a, b) => a.id - b.id); //sort result by cabin id
+
         return cabins;
     }
 );

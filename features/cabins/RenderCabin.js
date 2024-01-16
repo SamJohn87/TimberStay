@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, PanResponder, Alert, Share } from "react-native";
-import { useRef } from "react";
-import { Card, Icon } from "react-native-elements";
-import { baseUrl } from "../../shared/baseUrl";
+import { StyleSheet, Text, View, PanResponder, Alert, Share } from 'react-native';
+import { useRef } from 'react';
+import { Card, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 
 const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
@@ -65,7 +64,7 @@ const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
                 {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
-                    <Card.Image source={{ uri: `${baseUrl}${cabin.image}` }}>
+                    <Card.Image source={cabin.image}>
                         <View style={{ justifyContent: 'center', flex: 1 }}>
                             <Text style={styles.cardText}>
                                 {cabin.name}

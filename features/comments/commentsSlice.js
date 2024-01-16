@@ -5,7 +5,7 @@ import { collection, getDocs } from 'firebase/firestore';
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
     async () => {
-        const querySnapshot = await getDocs(collection(db, 'cabins')); //connect to Firestore to get comments collections' documents
+        const querySnapshot = await getDocs(collection(db, 'comments')); //connect to Firestore to get comments collections' documents
         const comments = [];
 
         querySnapshot.forEach((doc) => {

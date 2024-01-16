@@ -1,7 +1,6 @@
 import { ScrollView } from 'react-native';
 import { Card, Text, ListItem, Avatar } from 'react-native-elements';
 import { useSelector } from 'react-redux';
-import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
@@ -67,7 +66,7 @@ const AboutScreen = () => {
                     {partners.partnersArray.map((partner) => {
                         return (
                             <ListItem key={partner.id}>
-                                <Avatar source={{ uri: `${baseUrl}${partner.image}` }} rounded />
+                                <Avatar source={partner.image} rounded />
                                 <ListItem.Content>
                                     <ListItem.Title style={{ color: '#703F13', fontWeight: 'bold' }}>{partner.name}</ListItem.Title>
                                     <ListItem.Subtitle>
