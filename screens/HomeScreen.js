@@ -2,7 +2,6 @@ import { View, Text, Animated } from "react-native";
 import { useEffect, useRef } from "react";
 import { Card } from "react-native-elements";
 import { useSelector } from "react-redux";
-import { baseUrl } from "../shared/baseUrl";
 import Loading from "../components/LoadingComponent";
 
 const FeaturedItem = (props) => {
@@ -23,7 +22,7 @@ const FeaturedItem = (props) => {
     if (item) {
         return (
             <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={{ uri: `${baseUrl}${item.image}` }}>
+                <Card.Image source={item.image}>
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text style={{
                             color: 'white',
@@ -63,12 +62,12 @@ const HomeScreen = () => {
 
     return (
         <>
-        <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
-            <FeaturedItem item={featCabins} isLoading={cabins.isLoading} errMess={cabins.errMess} />
-            <FeaturedItem item={featPromotion} isLoading={promotions.isLoading} errMess={promotions.errMess} />
-        </Animated.ScrollView>
-        <Text style={{fontSize: 7}}>logos by hotpot.ai/art-generator</Text>
-        <Text style={{fontSize: 7}}>images by Unsplash</Text>
+            <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
+                <FeaturedItem item={featCabins} isLoading={cabins.isLoading} errMess={cabins.errMess} />
+                <FeaturedItem item={featPromotion} isLoading={promotions.isLoading} errMess={promotions.errMess} />
+            </Animated.ScrollView>
+            <Text style={{ fontSize: 7 }}>logos by hotpot.ai/art-generator</Text>
+            <Text style={{ fontSize: 7 }}>images by Unsplash</Text>
         </>
     );
 };

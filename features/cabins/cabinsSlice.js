@@ -1,17 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { baseUrl } from '../../shared/baseUrl';
+import { db } from '../../firebase.config';
+import { collection, getDocs } from 'firebase/firestore';
+import { mapImageURL } from '../../utils/mapImageURL';
 
 export const fetchCabins = createAsyncThunk(
     'cabins/fetchCabins',
     async () => {
-        const response = await fetch(`${baseUrl}cabins`);
-        if (!response.ok) {
-            return Promise.reject(
-                'Unable to fetch, status: ' + response.status
-            );
-        }
-        const data = await response.json();
-        return data;
+        const querySnapshot = await getDocs(collection(db, 'cabins')); //connect to Firestore to get cabins collections' documents
+        const cabins = [];
+
+        querySnapshot.forEach((doc) => {
+            cabins.push(doc.data()); //import results in array
+        });
+
+        return cabins;
     }
 );
 
@@ -27,7 +29,7 @@ const cabinsSlice = createSlice({
             .addCase(fetchCabins.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.errMess = null;
-                state.cabinsArray = action.payload;
+                state.cabinsArray = mapImageURL(action.payload);
             })
             .addCase(fetchCabins.rejected, (state, action) => {
                 state.isLoading = false;
