@@ -18,7 +18,7 @@ Feel free to explore my [personal website](https://samjohn87.github.io/) to lear
 
 ## Visuals
 
-![Alt text](assets/menuscreen.jpg | width=100)
+![Alt text](assets/menuscreen.jpg)
 ![Alt text](assets/cabininfoscreen.jpg)
 
 
