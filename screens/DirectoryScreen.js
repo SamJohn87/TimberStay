@@ -28,7 +28,7 @@ const DirectoryScreen = ({ navigation }) => {
                     caption={cabin.description}
                     featured
                     onPress={() => navigation.navigate('CabinInfo', { cabin })}
-                    imageSrc={cabin.image}
+                    imageSrc={{ uri: cabin.image }}
                 />
             </Animatable.View>
         );

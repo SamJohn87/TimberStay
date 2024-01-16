@@ -41,7 +41,7 @@ const FavoritesScreen = ({ navigation }) => {
                             params: { cabin }
                         })}
                     >
-                        <Avatar rounded source={cabin.image} />
+                        <Avatar rounded source={{ uri: cabin.image }} />
                         <ListItem.Content>
                             <ListItem.Title>{cabin.name}</ListItem.Title>
                             <ListItem.Subtitle style={{ color: '#3581C4' }}>{cabin.description}</ListItem.Subtitle>

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../firebase.config';
 import { collection, getDocs } from 'firebase/firestore';
-import { mapImageURL } from '../../utils/mapImageURL';
 
 export const fetchPromotions = createAsyncThunk(
     'promotions/fetchPromotions',
@@ -29,7 +28,7 @@ const promotionsSlice = createSlice({
             .addCase(fetchPromotions.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.errMess = null;
-                state.promotionsArray = mapImageURL(action.payload);
+                state.promotionsArray = action.payload;
             })
             .addCase(fetchPromotions.rejected, (state, action) => {
                 state.isLoading = false;

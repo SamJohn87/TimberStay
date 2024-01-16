@@ -66,7 +66,7 @@ const AboutScreen = () => {
                     {partners.partnersArray.map((partner) => {
                         return (
                             <ListItem key={partner.id}>
-                                <Avatar source={partner.image} rounded />
+                                <Avatar source={{ uri: partner.image }} rounded />
                                 <ListItem.Content>
                                     <ListItem.Title style={{ color: '#703F13', fontWeight: 'bold' }}>{partner.name}</ListItem.Title>
                                     <ListItem.Subtitle>

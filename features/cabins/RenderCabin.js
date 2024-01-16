@@ -1,3 +1,4 @@
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { StyleSheet, Text, View, PanResponder, Alert, Share } from 'react-native';
 import { useRef } from 'react';
 import { Card, Icon } from 'react-native-elements';
@@ -42,16 +43,26 @@ const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
     });
 
     const shareCabin = (title, message, url) => {
-        Share.share(
-            {
-                title,
-                message: `${title}: ${message} ${url}`,
-                url
-            },
-            {
-                dialogTitle: `Share ${title}`
-            }
-        )
+        const storage = getStorage();
+        const imageToShare = ref(storage, 'lakeside_serenity_cabin.jpg');
+
+        getDownloadURL(imageToShare)
+            .then((url) => {
+                Share.share(
+                    {
+                        title,
+                        message: `${title}: ${message} ${url}`,
+                        url
+                    },
+                    {
+                        dialogTitle: `Share ${title}`
+                    }
+                )
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
+
     }
 
     if (cabin) {
@@ -64,7 +75,7 @@ const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
                 {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
-                    <Card.Image source={cabin.image}>
+                    <Card.Image source={{ uri: cabin.image }}>
                         <View style={{ justifyContent: 'center', flex: 1 }}>
                             <Text style={styles.cardText}>
                                 {cabin.name}
@@ -104,7 +115,7 @@ const RenderCabin = ({ cabin, isFavorite, markFavorite, onShowModal }) => {
                             color='#3581C4'
                             raised
                             reverse
-                            onPress={() => shareCabin(cabin.name, cabin.description, `${baseUrl}${cabin.image}`)}
+                            onPress={() => shareCabin(cabin.name, cabin.description, 'http://192.168.1.66:3001/images/enchanted_hideaway.jpg')}
                         />
                     </View>
                 </Card>

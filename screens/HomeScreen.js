@@ -22,7 +22,7 @@ const FeaturedItem = (props) => {
     if (item) {
         return (
             <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={item.image}>
+                <Card.Image source={{ uri: item.image }}>
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text style={{
                             color: 'white',

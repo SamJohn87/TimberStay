@@ -1,7 +1,6 @@
 import { Platform, View, StyleSheet, Image, Text, Alert, ToastAndroid } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -240,13 +239,13 @@ const Main = () => {
                     name='Home'
                     component={HomeNavigator}
                     options={{
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='home'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}
@@ -256,13 +255,13 @@ const Main = () => {
                     component={DirectoryNavigator}
                     options={{
                         title: 'Cabin Directory',
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='list'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}
@@ -272,13 +271,13 @@ const Main = () => {
                     component={ReservationNavigator}
                     options={{
                         title: 'Reserve Cabin',
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='tree'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}
@@ -288,13 +287,13 @@ const Main = () => {
                     component={FavoritesNavigator}
                     options={{
                         title: 'My Favorites',
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='heart'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}
@@ -303,13 +302,13 @@ const Main = () => {
                     name='About'
                     component={AboutNavigator}
                     options={{
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='info-circle'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}
@@ -319,13 +318,13 @@ const Main = () => {
                     component={ContactNavigator}
                     options={{
                         title: 'Contact Us',
-                        drawerIcon: ({ color }) => (
+                        drawerIcon: () => (
                             <Icon
                                 name='address-card'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
-                                color={color}
+                                color={'#703F13'}
                             ></Icon>
                         )
                     }}

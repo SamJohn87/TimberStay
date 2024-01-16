@@ -51,6 +51,9 @@ const CabinInfoScreen = ({ route }) => {
             </View>
         );
     }
+    const data = comments.commentsArray.filter(
+        (comment) => comment.cabinId === cabin.id
+    );
 
     return (
         <Animatable.View
@@ -59,9 +62,7 @@ const CabinInfoScreen = ({ route }) => {
             delay={1000}
         >
             <FlatList
-                data={comments.commentsArray.filter(
-                    (comment) => comment.cabinId === cabin.id
-                )}
+                data={data}
                 renderItem={renderCommentItem}
                 keyExtractor={(item) => item.id.toString()}
                 contentContainerStyle={{
@@ -77,6 +78,9 @@ const CabinInfoScreen = ({ route }) => {
                             onShowModal={() => setShowModal(!showModal)}
                         />
                         <Text style={styles.commentsTitle}>Comments</Text>
+                        {data.length === 0 && (
+                            <Text style={[styles.commentItem, {color: '#3581C4'}]}>Be the first to leave a comment...</Text>
+                        )}
                     </>
                 }
             />
